@@ -10,7 +10,7 @@ def configure_logging() -> None:
     log.debug('Logging is configured.')
 
 
-CACHE_TTL = datetime.timedelta(hours=4).total_seconds()
+CACHE_TTL = datetime.timedelta(hours=3).total_seconds()
 FEED_DESCRIPTION = 'As a disclaimer, this is an unofficial feed and has no affiliation with Google.'
 FEED_TITLE = 'Google AI publications RSS feed (unofficial)'
 LOCALE = 'en_US.UTF-8'
