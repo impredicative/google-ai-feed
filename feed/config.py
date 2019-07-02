@@ -14,7 +14,7 @@ CACHE_TTL = datetime.timedelta(hours=4).total_seconds()
 FEED_DESCRIPTION = 'As a disclaimer, this is an unofficial feed and has no affiliation with Google.'
 FEED_TITLE = 'Google AI publications RSS feed (unofficial)'
 LOCALE = 'en_US.UTF-8'
-MAX_ENTRIES = 50
+MAX_ENTRIES = 100
 PUB_URL_FORMAT = 'https://ai.google/research/pubs/pub{pub_id}'
 REQUEST_TIMEOUT = 30
 REQUEST_URL = 'https://ai.google/static/data/publications.json'

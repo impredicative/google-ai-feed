@@ -1,5 +1,6 @@
 import locale
 import logging
+import textwrap
 
 import cachetools.func
 import feedgen.feed
@@ -37,7 +38,7 @@ class Feed:
         log.info('Response for request URL has %s entries.', f'{len(pubs):n}')
 
         pubs = [pub for pub in pubs if not set(pub['tag_pks']).isdisjoint(self._areas)]  # Remove null intersections
-        # pubs = [p for p in pubs if ('(to appear)' not in p['venue_html'])]  # Bad approximation of download avail.
+        pubs = [p for p in pubs if ('URL\t' in p['bibtex'])]  # Remove entries without a download link
         for pub in pubs:
             pub[':id'] = filename_to_id(pub['filename_html'])
         pubs.sort(key=lambda pub: pub[':id'], reverse=True)
@@ -46,6 +47,8 @@ class Feed:
         feed = self._init_feed()
         for idx, pub in enumerate(pubs):
             title = pub['title']
+            desc = textwrap.shorten(pub['description_html'], float('inf'))  # type: ignore
+            desc = ''.join(c for c in desc if c.isprintable())
             url = config.PUB_URL_FORMAT.format(pub_id=pub[':id'])
             guid = str(pub[':id'])
             categories = pub['tag_pks']  # Often starts with "research-area-" or "team-".
@@ -54,7 +57,7 @@ class Feed:
             entry.title(title)
             entry.link(href=url)
             entry.guid(guid, permalink=False)
-            entry.description(pub['description_html'])
+            entry.description(desc)
             for category in categories:
                 entry.category(term=category)
 
