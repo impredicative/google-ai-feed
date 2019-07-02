@@ -37,8 +37,8 @@ class Feed:
         pubs = requests.get(config.REQUEST_URL, timeout=config.REQUEST_TIMEOUT).json()['publications']
         log.info('Response for request URL has %s entries.', f'{len(pubs):n}')
 
-        pubs = [pub for pub in pubs if not set(pub['tag_pks']).isdisjoint(self._areas)]  # Remove null intersections
-        pubs = [p for p in pubs if ('URL\t' in p['bibtex'])]  # Remove entries without a download link
+        pubs = [pub for pub in pubs if not set(pub['tag_pks']).isdisjoint(self._areas)]  # Remove null intersections.
+        pubs = [p for p in pubs if ('URL\t' in p['bibtex'])]  # Remove entries without a download link.
         for pub in pubs:
             pub[':id'] = filename_to_id(pub['filename_html'])
         pubs.sort(key=lambda pub: pub[':id'], reverse=True)
