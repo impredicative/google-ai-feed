@@ -1,6 +1,5 @@
 # google-ai-feed
 **google-ai-feed** uses Python 3.7 to serve a filtered RSS feed for Google AI publications.
-Only the publications with a BibTeX URL are served, since only these are expected to have a _Download_ link.
 As a disclaimer, it has no affiliation with Google.
 
 ## Links
