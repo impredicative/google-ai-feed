@@ -1,6 +1,7 @@
 import datetime
 import logging.config
 import os
+import re
 from pathlib import Path
 
 
@@ -13,6 +14,7 @@ def configure_logging() -> None:
 CACHE_TTL = datetime.timedelta(hours=3).total_seconds()
 FEED_DESCRIPTION = 'As a disclaimer, this is an unofficial feed and has no affiliation with Google.'
 FEED_TITLE = 'Google AI publications RSS feed (unofficial)'
+FILENAME_TO_ID_REGEX = re.compile(r'^pub(?P<id>\d+)\.html')
 LOCALE = 'en_US.UTF-8'
 MAX_ENTRIES = 100
 PUB_URL_FORMAT = 'https://ai.google/research/pubs/pub{pub_id}'

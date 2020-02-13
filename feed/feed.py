@@ -16,7 +16,7 @@ log = logging.getLogger(__name__)
 
 
 def filename_to_id(filename: str) -> int:
-    return int(''.join(c for c in filename if c.isdigit()))
+    return int(config.FILENAME_TO_ID_REGEX.fullmatch(filename).groupdict()['id'])
 
 
 class Feed:
@@ -33,12 +33,15 @@ class Feed:
 
     @cachetools.func.ttl_cache(maxsize=1, ttl=config.CACHE_TTL)
     def feed(self) -> bytes:
-        log.debug('Reading request URL.')
+        log.debug('Reading %s', config.REQUEST_URL)
         pubs = requests.get(config.REQUEST_URL, timeout=config.REQUEST_TIMEOUT).json()['publications']
         log.info('Response for request URL has %s entries.', f'{len(pubs):n}')
-
+        log.info('The %s whitelisted research areas are: %s',
+                 len(config.RESEARCH_AREAS), ', '.join(config.RESEARCH_AREAS))
         pubs = [pub for pub in pubs if not set(pub['tag_pks']).isdisjoint(self._areas)]  # Remove null intersections.
+        log.info('%s of these entries exist for the whitelisted research areas.', len(pubs))
         pubs = [p for p in pubs if ('URL\t' in p['bibtex'])]  # Remove entries without a download link.
+        log.info('%s of these entries have a download link.', len(pubs))
         for pub in pubs:
             pub[':id'] = filename_to_id(pub['filename_html'])
         pubs.sort(key=lambda pub: pub[':id'], reverse=True)
