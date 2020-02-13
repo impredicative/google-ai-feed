@@ -1,6 +1,8 @@
 import locale
 import logging
+import re
 import textwrap
+from typing import cast
 
 import cachetools.func
 import feedgen.feed
@@ -16,7 +18,7 @@ log = logging.getLogger(__name__)
 
 
 def filename_to_id(filename: str) -> int:
-    return int(config.FILENAME_TO_ID_REGEX.fullmatch(filename).groupdict()['id'])
+    return int(cast(re.Match, config.FILENAME_TO_ID_REGEX.fullmatch(filename)).groupdict()['id'])
 
 
 class Feed:
