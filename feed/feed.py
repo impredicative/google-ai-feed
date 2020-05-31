@@ -83,5 +83,5 @@ class Feed:
             num_added += 1
 
         text: bytes = feed.rss_str(pretty=True)
-        log.info('Output feed has %s items and size %s.', len(pubs), humanize_len(text))
+        log.info('Output feed has %s items and size %s.', num_added, humanize_len(text))
         return text
