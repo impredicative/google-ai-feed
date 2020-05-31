@@ -51,7 +51,7 @@ class Feed:
         feed = self._init_feed()
         num_added = 0
         for pub in pubs:
-            if num_added > config.MAX_ENTRIES:
+            if num_added == config.MAX_ENTRIES:
                 break
 
             is_research_area_whitelisted = not set(pub['tag_pks']).isdisjoint(self._areas)
