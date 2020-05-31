@@ -17,9 +17,9 @@ FEED_TITLE = 'Google AI publications RSS feed (unofficial)'
 FILENAME_TO_ID_REGEX = re.compile(r'^pub(?P<id>\d+)\.html')
 LOCALE = 'en_US.UTF-8'
 MAX_ENTRIES = 100
-PUB_URL_FORMAT = 'https://ai.google/research/pubs/pub{pub_id}'
+PUB_URL_FORMAT = 'https://research.google/pubs/pub{pub_id}'
 REQUEST_TIMEOUT = 30
-REQUEST_URL = 'https://ai.google/static/data/publications.json'
+REQUEST_URL = 'https://research.google/static/data/publications.json'
 RESEARCH_AREAS = {
     'Data Mining and Modeling',
     'Machine Intelligence',
