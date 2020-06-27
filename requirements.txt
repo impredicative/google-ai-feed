@@ -5,19 +5,19 @@
 #    pip-compile
 #
 cachetools==4.1.0         # via -r requirements.in
-certifi==2020.4.5.1       # via requests
+certifi==2020.6.20        # via requests
 chardet==3.0.4            # via requests
 click==7.1.2              # via flask
 feedgen==0.9.0            # via -r requirements.in
 flask==1.1.2              # via -r requirements.in
-humanize==2.4.0           # via -r requirements.in
+humanize==2.4.1           # via -r requirements.in
 idna==2.9                 # via requests
 itsdangerous==1.1.0       # via flask
 jinja2==2.11.2            # via flask
 lxml==4.5.1               # via feedgen
 markupsafe==1.1.1         # via jinja2
 python-dateutil==2.8.1    # via feedgen
-requests==2.23.0          # via -r requirements.in
+requests==2.24.0          # via -r requirements.in
 six==1.15.0               # via python-dateutil
 urllib3==1.25.9           # via requests
 werkzeug==1.0.1           # via flask
