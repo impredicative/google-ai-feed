@@ -19,7 +19,7 @@ LOCALE = 'en_US.UTF-8'
 MAX_ENTRIES = 100
 PUB_URL_FORMAT = 'https://research.google/pubs/pub{pub_id}'
 REQUEST_TIMEOUT = 30
-REQUEST_URL = 'https://research.google/static/data/publications-242fe5564d0d76f2270840cae8f1160b88a2f8b02111184d1c63d8afc5e80146.json'  # Source: https://research.google/pubs/
+REQUEST_URL = 'https://research.google/static/data/publications-2d97247a0c468438dcff88d112739b1ae4f0b5f60a6df3d5df5a62e88a403fe5.json'  # Source: https://research.google/pubs/
 RESEARCH_AREAS = {
     'Data Mining and Modeling',
     'Machine Intelligence',
