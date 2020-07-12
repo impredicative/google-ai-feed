@@ -11,15 +11,18 @@ def configure_logging() -> None:
     log.debug('Logging is configured.')
 
 
+BASE_URL = 'https://research.google'
 CACHE_TTL = datetime.timedelta(hours=3).total_seconds()
 FEED_DESCRIPTION = 'As a disclaimer, this is an unofficial feed and has no affiliation with Google.'
 FEED_TITLE = 'Google AI publications RSS feed (unofficial)'
 FILENAME_TO_ID_REGEX = re.compile(r'^pub(?P<id>\d+)\.html')
 LOCALE = 'en_US.UTF-8'
 MAX_ENTRIES = 100
-PUB_URL_FORMAT = 'https://research.google/pubs/pub{pub_id}'
-REQUEST_TIMEOUT = 30
-REQUEST_URL = 'https://research.google/static/data/publications-2d97247a0c468438dcff88d112739b1ae4f0b5f60a6df3d5df5a62e88a403fe5.json'  # Source: https://research.google/pubs/
+PUB_URL_FORMAT = f'{BASE_URL}/pubs/pub{{pub_id}}'
+REQUEST_HOME_URL = f'{BASE_URL}/pubs/'
+REQUEST_HOME_URL_TIMEOUT = 30
+REQUEST_DATA_URL_TIMEOUT = 60
+REQUEST_DATA_URL_REGEX = re.compile(br"var\ publicationsJsonPath\ =\ '(?P<path>[^\.]+\.json)';")
 RESEARCH_AREAS = {
     'Data Mining and Modeling',
     'Machine Intelligence',

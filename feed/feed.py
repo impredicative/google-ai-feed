@@ -2,7 +2,7 @@ import locale
 import logging
 import re
 import textwrap
-from typing import cast
+from typing import cast, Match
 
 import cachetools.func
 import feedgen.feed
@@ -18,7 +18,7 @@ log = logging.getLogger(__name__)
 
 
 def filename_to_id(filename: str) -> int:
-    return int(cast(re.Match, config.FILENAME_TO_ID_REGEX.fullmatch(filename)).groupdict()['id'])
+    return int(cast(Match, config.FILENAME_TO_ID_REGEX.fullmatch(filename)).groupdict()['id'])
 
 
 class Feed:
@@ -37,9 +37,13 @@ class Feed:
 
     @cachetools.func.ttl_cache(maxsize=1, ttl=config.CACHE_TTL)
     def feed(self) -> bytes:
-        log.debug('Reading %s', config.REQUEST_URL)
-        pubs = requests.get(config.REQUEST_URL, timeout=config.REQUEST_TIMEOUT).json()['publications']
-        log.info('Response for request URL has %s entries.', f'{len(pubs):n}')
+        log.debug('Reading %s', config.REQUEST_HOME_URL)
+        content = requests.get(config.REQUEST_HOME_URL, timeout=config.REQUEST_HOME_URL_TIMEOUT).content
+        data_url = config.BASE_URL + cast(Match, config.REQUEST_DATA_URL_REGEX.search(content)).groupdict()['path'].decode()
+
+        log.debug('Reading %s', data_url)
+        pubs = requests.get(data_url, timeout=config.REQUEST_DATA_URL_TIMEOUT).json()['publications']
+        log.info(f'Response for {data_url}, indirectly from {config.REQUEST_HOME_URL}, has {len(pubs):n} entries.')
 
         # Sort by ID
         pubs = [pub for pub in pubs if pub['filename_html']]
