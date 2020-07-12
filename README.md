@@ -4,7 +4,7 @@ As a disclaimer, it has no affiliation with Google.
 
 ## Links
 * [Project repo](https://github.com/ml-feeds/google-ai-feed)
-* [Original HTML listing](https://ai.google/research/pubs/)
+* [Upstream website](https://research.google/pubs/)
 * [**Unofficial filtered feed**](https://us-east1-ml-feeds.cloudfunctions.net/google-ai)
 
 ## Deployment
