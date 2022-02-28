@@ -10,19 +10,19 @@ certifi==2021.10.8
     # via requests
 charset-normalizer==2.0.12
     # via requests
-click==7.1.2
+click==8.0.4
     # via flask
 feedgen==0.9.0
     # via -r requirements.in
-flask==1.1.4
+flask==2.0.3
     # via -r requirements.in
 humanize==4.0.0
     # via -r requirements.in
 idna==3.3
     # via requests
-itsdangerous==1.1.0
+itsdangerous==2.1.0
     # via flask
-jinja2==2.11.3
+jinja2==3.0.3
     # via flask
 lxml==4.8.0
     # via feedgen
@@ -36,5 +36,5 @@ six==1.16.0
     # via python-dateutil
 urllib3==1.26.8
     # via requests
-werkzeug==1.0.1
+werkzeug==2.0.3
     # via flask
