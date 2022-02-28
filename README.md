@@ -1,5 +1,5 @@
 # google-ai-feed
-**google-ai-feed** uses Python 3.8 to serve a filtered RSS feed for Google AI publications.
+**google-ai-feed** uses Python 3.9 to serve a filtered RSS feed for Google AI publications.
 As a disclaimer, it has no affiliation with Google.
 
 ## Links
